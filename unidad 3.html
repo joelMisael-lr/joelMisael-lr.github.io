@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unidad 3 - Selección de componentes</title>
+  <style>
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+      margin: 0; 
+      padding: 0; 
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    header { 
+      background: linear-gradient(135deg, #003366, #005599);
+      color: white; 
+      padding: 30px 20px; 
+      text-align: center; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.2em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    nav {
+      display: flex;
+      background: #005599;
+      justify-content: center;
+      padding: 15px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 25px;
+      margin: 5px 10px;
+      background: #0077cc;
+      border-radius: 30px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    nav a:hover {
+      background: #0066b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    
+    .section {
+      background: white;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+      border-left: 5px solid #0077cc;
+    }
+    
+    .section h2 {
+      color: #005599;
+      margin-top: 0;
+      border-bottom: 2px solid #e1e5eb;
+      padding-bottom: 10px;
+    }
+    
+    .subsection {
+      margin-left: 20px;
+      padding-left: 15px;
+      border-left: 3px solid #e1e5eb;
+    }
+    
+    .subsection h3 {
+      color: #0077cc;
+    }
+    
+    .subsection h4 {
+      color: #0099ff;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.05);
+    }
+    
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #e1e5eb;
+    }
+    
+    th {
+      background-color: #0077cc;
+      color: white;
+      font-weight: 500;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    
+    tr:hover {
+      background-color: #f1f5f9;
+    }
+    
+    .image-container {
+      text-align: center;
+      margin: 25px 0;
+    }
+    
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border: 1px solid #e1e5eb;
+    }
+    
+    .image-container figcaption {
+      margin-top: 10px;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9em;
+    }
+    
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0;
+    }
+    
+    .card {
+      flex: 1 1 300px;
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid #0077cc;
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    
+    .card h3 {
+      color: #005599;
+      margin-top: 0;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      margin: 25px 0;
+    }
+    
+    .comparison-table th {
+      background: #005599;
+      color: white;
+      text-align: center;
+    }
+    
+    .comparison-table td {
+      text-align: center;
+      vertical-align: middle;
+    }
+    
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #0077cc;
+    }
+    
+    .chipset-diagram {
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 25px 0;
+      text-align: center;
+    }
+    
+    .environment-card {
+      background: linear-gradient(145deg, #ffffff, #f0f4f8);
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+      border-top: 4px solid #0077cc;
+    }
+    
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 25px 0;
+    }
+    
+    .component-item {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .component-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+    
+    .component-icon {
+      font-size: 40px;
+      color: #0077cc;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .highlight-box {
+      background: #e6f2ff;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 25px 0;
+      border-left: 4px solid #0077cc;
+    }
+    
+    .specs-table {
+      width: 100%;
+      margin: 20px 0;
+    }
+    
+    .specs-table th {
+      background: #0077cc;
+      color: white;
+    }
+    
+    .specs-table td {
+      padding: 12px 15px;
+    }
+    
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+      }
+      
+      .component-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+ </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <h1>Arquitectura de Computadoras - Unidad 3 </h1>
+  </header>
+  
+  <nav>
+    <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+    <a href="unidad1.html"><i class="fas fa-microchip"></i> Unidad 1</a>
+    <a href="unidad2.html"><i class="fas fa-cogs"></i> Unidad 2</a>
+    <a href="unidad 3.html"><i class="fas fa-laptop-code"></i> Unidad 3</a>
+    <a href="unidad 4.html"><i class="fas fa-server"></i> Unidad 4</a>
+    <a href="practicas.html"><i class="fas fa-flask"></i> Prácticas</a>
+  </nav>
+
+  <div class="container">
+    <section class="section">
+      <h2>1. Chipset</h2>
+      
+      <div class="chipset-diagram">
+      
+      <div class="component-grid">
+        <div class="component-item">
+          <div class="component-icon">
+            <i class="fas fa-microchip"></i>
+          </div>
+          <h3>1.1 Unidad Central de Procesamiento (CPU)</h3>
+          <p>El cerebro del computador que ejecuta instrucciones y procesa datos.</p>
+          
+          <div class="highlight-box">
+            <h4>Consideraciones para selección:</h4>
+            <ul>
+              <li>Número de núcleos e hilos</li>
+              <li>Frecuencia de reloj</li>
+              <li>Cache L2/L3</li>
+              <li>Consumo energético (TDP)</li>
+              <li>Socket compatible</li>
+            </ul>
+          </div>
+          
+          <table class="specs-table">
+            <tr>
+              <th>Procesador</th>
+              <th>Núcleos</th>
+              <th>Frecuencia</th>
+              <th>TDP</th>
+            </tr>
+            <tr>
+              <td>Intel Core i9-13900K</td>
+              <td>24 (8P+16E)</td>
+              <td>Hasta 5.8 GHz</td>
+              <td>125W</td>
+            </tr>
+            <tr>
+              <td>AMD Ryzen 9 7950X</td>
+              <td>16</td>
+              <td>Hasta 5.7 GHz</td>
+              <td>170W</td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="component-item">
+          <div class="component-icon">
+            <i class="fas fa-bus"></i>
+          </div>
+          <h3>1.2 Controlador del Bus</h3>
+          <p>Gestiona la comunicación entre los componentes del sistema.</p>
+          <ul>
+            <li>Velocidad del bus del sistema</li>
+            <li>Compatibilidad con estándares (PCIe, USB, SATA)</li>
+            <li>Ancho de banda disponible</li>
+            <li>Arbitraje de acceso</li>
+          </ul>
+        </div>
+        
+        <div class="component-item">
+          <div class="component-icon">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <h3>1.3 Puertas de Entrada/Salida (E/S)</h3>
+          <p>Interfaces para conectar dispositivos externos.</p>
+          <table class="specs-table">
+            <tr>
+              <th>Tipo</th>
+              <th>Versión</th>
+              <th>Velocidad</th>
+            </tr>
+            <tr>
+              <td>USB</td>
+              <td>3.2 Gen 2x2</td>
+              <td>20 Gbps</td>
+            </tr>
+            <tr>
+              <td>Thunderbolt</td>
+              <td>4</td>
+              <td>40 Gbps</td>
+            </tr>
+            <tr>
+              <td>Ethernet</td>
+              <td>2.5GbE</td>
+              <td>2.5 Gbps</td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="component-item">
+          <div class="component-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <h3>1.4 Controlador de Interrupciones</h3>
+          <p>Gestiona las señales de interrupción de los dispositivos.</p>
+          <ul>
+            <li>Priorización de interrupciones</li>
+            <li>Manejo de múltiples fuentes</li>
+            <li>Compatibilidad con APIC</li>
+          </ul>
+        </div>
+        
+        <div class="component-item">
+          <div class="component-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <h3>1.5 Controlador de Acceso Directo a Memoria (DMA)</h3>
+          <p>Permite transferencias directas entre dispositivos y memoria.</p>
+          <div class="highlight-box">
+            <h4>Ventajas:</h4>
+            <ul>
+              <li>Reduce carga de la CPU</li>
+              <li>Mayor velocidad en transferencias</li>
+              <li>Eficiencia energética</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="component-item">
+          <div class="component-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>1.6 Circuitos de Temporización</h3>
+          <p>Generan y sincronizan las señales de reloj del sistema.</p>
+          <ul>
+            <li>Precisión en nanosegundos</li>
+            <li>Estabilidad de frecuencia</li>
+            <li>Múltiples dominios de reloj</li>
+          </ul>
+        </div>
+        
+        <div class="component-item">
+          <div class="component-icon">
+            <i class="fas fa-sliders-h"></i>
+          </div>
+          <h3>1.7 Circuitos de Control</h3>
+          <p>Coordinan las operaciones del sistema.</p>
+          <table class="specs-table">
+            <tr>
+              <th>Función</th>
+              <th>Descripción</th>
+            </tr>
+            <tr>
+              <td>Power Management</td>
+              <td>Control de estados de energía</td>
+            </tr>
+            <tr>
+              <td>Thermal Control</td>
+              <td>Monitoreo y regulación de temperatura</td>
+            </tr>
+            <tr>
+              <td>Reset Control</td>
+              <td>Secuencias de inicio y reinicio</td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="component-item">
+          <div class="component-icon">
+            <i class="fas fa-desktop"></i>
+          </div>
+          <h3>1.8 Controladores de Video</h3>
+          <p>Gestionan la salida gráfica del sistema.</p>
+          <div class="card-container">
+            <div class="card">
+              <h4>Integrados</h4>
+              <ul>
+                <li>Intel UHD Graphics</li>
+                <li>AMD Radeon Graphics</li>
+                <li>Bajo consumo</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h4>Dedicados</h4>
+              <ul>
+                <li>NVIDIA RTX</li>
+                <li>AMD Radeon RX</li>
+                <li>Alto rendimiento</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2. Aplicaciones</h2>
+      
+      <div class="subsection">
+        <h3>2.1 Entrada/Salida</h3>
+        
+        <div class="image-container">
+          <img src="interfazE/Z.png" alt="Interfaces de E/S modernas">
+          <figcaption>Figura 2.1: Estándares modernos de interfaces de Entrada/Salida</figcaption>
+        </div>
+        
+        <table class="comparison-table">
+          <tr>
+            <th>Dispositivo</th>
+            <th>Interfaz</th>
+            <th>Velocidad</th>
+            <th>Uso típico</th>
+          </tr>
+          <tr>
+            <td><i class="fas fa-keyboard feature-icon"></i> Teclado</td>
+            <td>USB/PS2</td>
+            <td>1.5 Mbps</td>
+            <td>Entrada básica</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-mouse feature-icon"></i> Ratón</td>
+            <td>USB/Wireless</td>
+            <td>1.5-12 Mbps</td>
+            <td>Entrada de precisión</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-hdd feature-icon"></i> Disco Duro</td>
+            <td>SATA/NVMe</td>
+            <td>6 Gbps - 7 GB/s</td>
+            <td>Almacenamiento</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-network-wired feature-icon"></i> Red</td>
+            <td>Ethernet/WiFi</td>
+            <td>1-100 Gbps</td>
+            <td>Comunicaciones</td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="subsection">
+        <h3>2.2 Almacenamiento</h3>
+        
+        <div class="card-container">
+          <div class="card">
+            <h4>SSD NVMe</h4>
+            <ul>
+              <li>Hasta 7,000 MB/s</li>
+              <li>Baja latencia</li>
+              <li>Factor M.2</li>
+              <li>Precio por GB más alto</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h4>SSD SATA</h4>
+            <ul>
+              <li>Hasta 550 MB/s</li>
+              <li>Compatibilidad universal</li>
+              <li>Factor 2.5"</li>
+              <li>Precio intermedio</li>
+            </ul>
+          </div>
+          
+          <div class="card">
+            <h4>HDD</h4>
+            <ul>
+              <li>Hasta 200 MB/s</li>
+              <li>Alta capacidad</li>
+              <li>Factor 3.5"/2.5"</li>
+              <li>Precio por GB más bajo</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="highlight-box">
+          <h4>Criterios de selección:</h4>
+          <ol>
+            <li><strong>Rendimiento:</strong> IOPS y throughput</li>
+            <li><strong>Capacidad:</strong> GB/TB requeridos</li>
+            <li><strong>Durabilidad:</strong> TBW (Terabytes Written)</li>
+            <li><strong>Conectividad:</strong> SATA vs NVMe</li>
+            <li><strong>Presupuesto:</strong> Costo por GB</li>
+          </ol>
+        </div>
+      </div>
+      
+      <div class="subsection">
+        <h3>2.3 Fuentes de Alimentación</h3>
+        
+        <div class="image-container">
+          <img src="curvasEficiencia.png" alt="Curvas de eficiencia de fuentes de poder">
+          <figcaption>Figura 2.2: Curvas de eficiencia típicas en fuentes de alimentación</figcaption>
+        </div>
+        
+        <table class="comparison-table">
+          <tr>
+            <th>Certificación</th>
+            <th>Eficiencia</th>
+            <th>Recomendación</th>
+          </tr>
+          <tr>
+            <td>80 Plus White</td>
+            <td>80% @ 20/50/100%</td>
+            <td>Básico</td>
+          </tr>
+          <tr>
+            <td>80 Plus Bronze</td>
+            <td>82/85/82%</td>
+            <td>Económico</td>
+          </tr>
+          <tr>
+            <td>80 Plus Gold</td>
+            <td>87/90/87%</td>
+            <td>Recomendado</td>
+          </tr>
+          <tr>
+            <td>80 Plus Platinum</td>
+            <td>90/92/89%</td>
+            <td>Alto rendimiento</td>
+          </tr>
+          <tr>
+            <td>80 Plus Titanium</td>
+            <td>92/94/90%</td>
+            <td>Élite</td>
+          </tr>
+        </table>
+        
+        <div class="highlight-box">
+          <h4>Fórmula para calcular potencia necesaria:</h4>
+          <p><strong>Potencia Total = (CPU TDP + GPU TDP) × 1.5 + 100W (otros componentes)</strong></p>
+          <p>Ejemplo: Para un Ryzen 7 5800X (105W) + RTX 3070 (220W): (105+220)×1.5 + 100 = 587.5W → Recomendado 650W</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>3. Ambientes de servicio</h2>
+      
+      <div class="environment-card">
+        <h3>3.1 Negocios</h3>
+        <div class="card-container">
+          <div class="card">
+            <h4><i class="fas fa-building"></i> Oficinas</h4>
+            <ul>
+              <li>Equipos todo-en-uno</li>
+              <li>Almacenamiento en red</li>
+              <li>Seguridad de datos</li>
+              <li>Software corporativo</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-laptop"></i> Portátiles empresariales</h4>
+            <ul>
+              <li>Durabilidad (MIL-STD)</li>
+              <li>Batería de larga duración</li>
+              <li>Protección de datos</li>
+              <li>Servicio técnico garantizado</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="highlight-box">
+          <h4>Recomendaciones para negocios:</h4>
+          <ul>
+            <li>Priorizar confiabilidad sobre rendimiento</li>
+            <li>Seleccionar equipos con soporte extendido</li>
+            <li>Considerar soluciones de virtualización</li>
+            <li>Invertir en backup y recuperación de desastres</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="environment-card">
+        <h3>3.2 Industria</h3>
+        <div class="card-container">
+          <div class="card">
+            <h4><i class="fas fa-industry"></i> Control industrial</h4>
+            <ul>
+              <li>Computadores industriales</li>
+              <li>Resistencia a temperaturas extremas</li>
+              <li>Protección contra vibraciones</li>
+              <li>Interfaces industriales (RS-485, CAN)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-robot"></i> Automatización</h4>
+            <ul>
+              <li>PLC y controladores</li>
+              <li>Tiempo real determinístico</li>
+              <li>Comunicaciones industriales</li>
+              <li>Redundancia crítica</li>
+            </ul>
+          </div>
+        </div>
+        
+        <table class="specs-table">
+          <tr>
+            <th>Característica</th>
+            <th>Oficina</th>
+            <th>Industrial</th>
+          </tr>
+          <tr>
+            <td>Temperatura operativa</td>
+            <td>10-35°C</td>
+            <td>-40 a 70°C</td>
+          </tr>
+          <tr>
+            <td>Protección contra polvo</td>
+            <td>Básica</td>
+            <td>IP65 o superior</td>
+          </tr>
+          <tr>
+            <td>Vibraciones</td>
+            <td>No diseñado</td>
+            <td>5-2000 Hz, 5G</td>
+          </tr>
+          <tr>
+            <td>Ciclo de vida</td>
+            <td>3-5 años</td>
+            <td>10+ años</td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="environment-card">
+        <h3>3.3 Comercio Electrónico</h3>
+        <div class="card-container">
+          <div class="card">
+            <h4><i class="fas fa-server"></i> Infraestructura backend</h4>
+            <ul>
+              <li>Servidores escalables</li>
+              <li>Balanceadores de carga</li>
+              <li>Bases de datos distribuidas</li>
+              <li>Almacenamiento de alto IOPS</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4><i class="fas fa-cloud"></i> Plataformas e-commerce</h4>
+            <ul>
+              <li>Hosting especializado</li>
+              <li>CDN para contenido estático</li>
+              <li>Protección DDoS</li>
+              <li>Autoescalado</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="highlight-box">
+          <h4>Requisitos clave para e-commerce:</h4>
+          <ol>
+            <li><strong>Disponibilidad:</strong> 99.99% uptime o superior</li>
+            <li><strong>Seguridad:</strong> Certificados SSL, PCI DSS</li>
+            <li><strong>Rendimiento:</strong> Tiempos de respuesta <500ms</li>
+            <li><strong>Escalabilidad:</strong> Picos de tráfico (Black Friday)</li>
+            <li><strong>Respaldo:</strong> Backup frecuentes y redundantes</li>
+          </ol>
+        </div>
+        
+        <div class="image-container">
+          <img src="E-COMMERCE.png" alt="Arquitectura de infraestructura e-commerce">
+          <figcaption>Figura 3.1: Arquitectura típica de infraestructura para comercio electrónico</figcaption>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

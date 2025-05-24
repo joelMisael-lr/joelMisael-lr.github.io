@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - Arquitectura de las Computadoras</title>
+  <style>
+    :root {
+      --primary-color: #003366;
+      --secondary-color: #005599;
+      --accent-color: #0077cc;
+      --light-accent: #e7f4ff;
+      --text-color: #333;
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      background-color: var(--light-bg);
+    }
+    
+    header { 
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    h2 {
+      color: var(--primary-color);
+      font-size: 1.8rem;
+      margin-top: 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-color);
+    }
+    
+    nav {
+      display: flex;
+      background: var(--secondary-color);
+      justify-content: center;
+      padding: 15px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 12px 25px;
+      margin: 5px 10px;
+      background: var(--accent-color);
+      border-radius: 30px;
+      font-weight: 500;
+      transition: var(--transition);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    nav a:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    nav a i {
+      font-size: 1.1rem;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 30px;
+      box-shadow: var(--box-shadow);
+      border-radius: var(--border-radius);
+      margin-bottom: 30px;
+    }
+    
+    .welcome-section {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .welcome-section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto 30px;
+    }
+    
+    .hero-image {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 85, 153, 0.7)), 
+                  url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+      background-size: cover;
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      text-align: center;
+      margin: 30px 0;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      padding: 20px;
+    }
+    
+    .hero-content h2 {
+      color: var(--white);
+      border-bottom: none;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+    
+    .definition-card {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 30px;
+      margin: 30px 0;
+      box-shadow: var(--box-shadow);
+      border-left: 4px solid var(--accent-color);
+    }
+    
+    .definition-card h3 {
+      color: var(--primary-color);
+      margin-top: 0;
+    }
+    
+    .definition-card ul {
+      padding-left: 20px;
+    }
+    
+    .definition-card li {
+      margin-bottom: 10px;
+      position: relative;
+      padding-left: 20px;
+    }
+    
+    .definition-card li::before {
+      content: "•";
+      color: var(--accent-color);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--primary-color);
+      color: var(--white);
+      margin-top: 30px;
+    }
+    
+    .footer p {
+      margin: 0;
+    }
+    
+    @media (max-width: 768px) {
+      nav a {
+        padding: 10px 15px;
+        margin: 5px;
+        font-size: 0.9rem;
+      }
+      
+      .container {
+        padding: 20px;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-image {
+        height: 250px;
+      }
+      
+      .hero-content h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <h1>Arquitectura de las Computadoras</h1>
+  </header>
+  
+  <nav>
+    <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+    <a href="unidad1.html"><i class="fas fa-microchip"></i> Unidad 1</a>
+    <a href="unidad2.html"><i class="fas fa-cogs"></i> Unidad 2</a>
+    <a href="unidad 3.html"><i class="fas fa-laptop-code"></i> Unidad 3</a>
+    <a href="unidad 4.html"><i class="fas fa-server"></i> Unidad 4</a>
+    <a href="practicas.html"><i class="fas fa-flask"></i> Prácticas</a>
+  </nav>
+
+  <div class="container">
+    <div class="welcome-section">
+      <h2>Bienvenido</h2>
+      <p>Este sitio contiene materiales organizados por unidad de la materia Arquitectura de las Computadoras. Aquí podrás encontrar información fundamental sobre el diseño y organización de los sistemas computacionales modernos.</p>
+    </div>
+    
+    <div class="hero-image">
+      <div class="hero-content">
+        <h2>Explora el mundo de la arquitectura computacional</h2>
+        <p>Descubre los principios fundamentales que rigen el diseño de los sistemas computacionales modernos</p>
+      </div>
+    </div>
+    
+    <div class="definition-card">
+      <h3>¿Qué es la Arquitectura de Computadoras?</h3>
+      <ul>
+        <li>Es el diseño conceptual y la estructura operacional fundamental de un sistema de computadora.</li>
+        <li>Es un modelo y una descripción funcional de los requerimientos y las implementaciones de diseño para varias partes de una computadora.</li>
+        <li>Se enfoca especialmente en cómo la Unidad Central de Procesamiento (UCP) trabaja internamente y accede a las direcciones de memoria.</li>
+        <li>Define la forma de seleccionar e interconectar componentes de hardware para crear computadoras según requerimientos de funcionalidad, rendimiento y costo.</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <p>Joel Misael Leija De La Rosa | 23051121 | Ingeniería en Sistemas Computacionales</p>
+  </div>
+</body>
+</html>

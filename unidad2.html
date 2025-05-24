@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AC Unidad 2 - Arquitectura de Computadoras</title>
+  <style>
+    :root {
+      --primary-color: #003366;
+      --secondary-color: #005599;
+      --accent-color: #0077cc;
+      --light-accent: #e7f4ff;
+      --text-color: #333;
+      --light-bg: #f9f9f9;
+      --white: #ffffff;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      background-color: var(--light-bg);
+    }
+    
+    header { 
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    nav {
+      display: flex;
+      background: var(--secondary-color);
+      justify-content: center;
+      padding: 15px;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      padding: 12px 25px;
+      margin: 5px 10px;
+      background: var(--accent-color);
+      border-radius: 30px;
+      font-weight: 500;
+      transition: var(--transition);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    nav a:hover {
+      background: var(--secondary-color);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--white);
+      padding: 30px;
+      box-shadow: var(--box-shadow);
+      border-radius: var(--border-radius);
+      margin-bottom: 30px;
+    }
+    
+    .section {
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    
+    .section:last-child {
+      border-bottom: none;
+    }
+    
+    h2 {
+      color: var(--primary-color);
+      margin-top: 40px;
+      padding-left: 15px;
+      border-left: 5px solid var(--accent-color);
+      font-size: 1.8rem;
+    }
+    
+    h3 {
+      color: var(--secondary-color);
+      margin-top: 30px;
+      font-size: 1.4rem;
+    }
+    
+    h4 {
+      color: var(--accent-color);
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+    
+    ul, ol {
+      padding-left: 25px;
+    }
+    
+    li {
+      margin-bottom: 10px;
+      position: relative;
+    }
+    
+    ul li::before {
+      content: "•";
+      color: var(--accent-color);
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+    
+    .table-container {
+      overflow-x: auto;
+      margin: 25px 0;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+    }
+    
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #e1e5eb;
+    }
+    
+    th {
+      background-color: var(--accent-color);
+      color: var(--white);
+      font-weight: 600;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    
+    tr:hover {
+      background-color: #f1f5f9;
+    }
+    
+    .note {
+      background-color: var(--light-accent);
+      padding: 20px;
+      border-left: 4px solid var(--accent-color);
+      margin: 25px 0;
+      border-radius: var(--border-radius);
+    }
+    
+    .pipeline-table {
+      font-family: monospace;
+      white-space: nowrap;
+      width: 100%;
+    }
+    
+    .pipeline-table td {
+      text-align: center;
+      padding: 10px;
+      border: 1px solid #e1e5eb;
+    }
+    
+    .pipeline-table th {
+      position: sticky;
+      top: 0;
+    }
+    
+    .image-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+    
+    .image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      border: 1px solid #e1e5eb;
+      transition: var(--transition);
+    }
+    
+    .image-container img:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .image-container figcaption {
+      margin-top: 10px;
+      font-style: italic;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 25px 0;
+    }
+    
+    .card {
+      flex: 1 1 300px;
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--box-shadow);
+      border-top: 4px solid var(--accent-color);
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    
+    .card h3 {
+      margin-top: 0;
+      color: var(--primary-color);
+    }
+    
+    .comparison {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 25px 0;
+    }
+    
+    .comparison-item {
+      flex: 1;
+      min-width: 300px;
+      background: var(--white);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--box-shadow);
+    }
+    
+    .comparison-item h4 {
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 10px;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      nav a {
+        padding: 10px 15px;
+        margin: 5px;
+        font-size: 0.9rem;
+      }
+      
+      .card, .comparison-item {
+        min-width: 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <header>
+    <h1>Arquitectura de Computadoras - Unidad 2</h1>
+  </header>
+  
+  <nav>
+    <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+    <a href="unidad1.html"><i class="fas fa-microchip"></i> Unidad 1</a>
+    <a href="unidad2.html"><i class="fas fa-cogs"></i> Unidad 2</a>
+    <a href="unidad 3.html"><i class="fas fa-laptop-code"></i> Unidad 3</a>
+    <a href="unidad 4.html"><i class="fas fa-server"></i> Unidad 4</a>
+    <a href="practicas.html"><i class="fas fa-flask"></i> Prácticas</a>
+  </nav>
+
+  <div class="container">
+    <section class="section">
+      <h2>2.1 Registros visibles para el usuario</h2>
+      
+      <div class="image-container">
+        <img src=".png" alt="Organización de registros de CPU">
+        <figcaption>Figura 2.1: Organización típica de registros en una CPU</figcaption>
+      </div>
+      
+      <h3>¿Qué son?</h3>
+      <p>Los registros visibles para el usuario son aquellos que pueden ser accedidos directamente por los programadores para manipular datos y direcciones.</p>
+      
+      <h3>Tipos de registros visibles para el usuario</h3>
+      <div class="card-container">
+        <div class="card">
+          <h3>Registros de datos</h3>
+          <p>Almacenan valores numéricos para operaciones aritméticas y lógicas.</p>
+          <ul>
+            <li>Enteros</li>
+            <li>Punto flotante</li>
+            <li>Vectores (SIMD)</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Registros de direcciones</h3>
+          <p>Contienen direcciones de memoria para acceder a datos e instrucciones.</p>
+          <ul>
+            <li>Punteros</li>
+            <li>Índices</li>
+            <li>Segmentos</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Registros de propósito general</h3>
+          <p>Usados para diferentes tareas según la necesidad del programa.</p>
+          <ul>
+            <li>AX, BX, CX, DX (x86)</li>
+            <li>R0-R12 (ARM)</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Registros de condición</h3>
+          <p>Guardan información sobre el resultado de una operación.</p>
+          <ul>
+            <li>Banderas (flags)</li>
+            <li>Estado de comparación</li>
+            <li>Códigos de error</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h3>Importancia</h3>
+      <div class="note">
+        <p>Estos registros permiten que los programas accedan y manipulen datos de manera rápida, optimizando la ejecución de instrucciones. Los registros visibles para el usuario facilitan la programación y mejoran el rendimiento del procesador al reducir los accesos a memoria principal.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2.2.2 Registros de control y de estados</h2>
+      
+      <div class="image-container">
+        <img src="https://www.researchgate.net/publication/334632053/figure/fig2/AS:783989736828928@1563993791260/Control-and-status-registers.png" alt="Registros de control y estado">
+        <figcaption>Figura 2.2: Registros de control y estado en una CPU moderna</figcaption>
+      </div>
+      
+      <p>Estos registros son utilizados por la CPU para gestionar su operación y supervisar el estado del sistema. Son esenciales para el control interno del procesador, ya que almacenan información sobre la ejecución de instrucciones, posibles errores y condiciones específicas del hardware.</p>
+      
+      <div class="comparison">
+        <div class="comparison-item">
+          <h4>Registros de control</h4>
+          <p>Determinan el modo de operación de la CPU:</p>
+          <ul>
+            <li>Control de acceso a memoria</li>
+            <li>Gestión de interrupciones</li>
+            <li>Manejo del contexto</li>
+            <li>Modos de ejecución (kernel/user)</li>
+            <li>Configuración de caché</li>
+          </ul>
+        </div>
+        
+        <div class="comparison-item">
+          <h4>Registros de estado</h4>
+          <p>Contienen información sobre el estado actual del procesador:</p>
+          <ul>
+            <li>Banderas de condición (Zero, Carry, Overflow)</li>
+            <li>Estado de interrupciones</li>
+            <li>Modo de ejecución actual</li>
+            <li>Errores y excepciones</li>
+            <li>Información de depuración</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h3>Importancia</h3>
+      <div class="note">
+        <p>Estos registros permiten que el procesador funcione correctamente, asegurando que las instrucciones se ejecuten de manera eficiente y sin errores. Los registros de control y de estado son esenciales para la estabilidad y el control del procesador, permitiendo un funcionamiento eficiente en diferentes modos y condiciones.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>2.2.3 Ejemplos de organización de registros de CPU reales</h2>
+      
+      <h3>Tipos de registros de la CPU</h3>
+      <div class="card-container">
+        <div class="card">
+          <h3>Propósito general</h3>
+          <p>Almacenamiento temporal de datos y variables</p>
+          <ul>
+            <li>AX, BX, CX, DX (x86)</li>
+            <li>R0-R12 (ARM)</li>
+            <li>X0-X31 (RISC-V)</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Propósito específico</h3>
+          <p>Funciones especializadas</p>
+          <ul>
+            <li>PC (Contador de Programa)</li>
+            <li>IR (Registro de Instrucción)</li>
+            <li>SP (Stack Pointer)</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Estado y control</h3>
+          <p>Información del estado del procesador</p>
+          <ul>
+            <li>FLAGS (x86)</li>
+            <li>CPSR (ARM)</li>
+            <li>CSR (RISC-V)</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h3>Punto flotante</h3>
+          <p>Cálculos matemáticos avanzados</p>
+          <ul>
+            <li>FPU (x87)</li>
+            <li>V0-V31 (ARM NEON)</li>
+            <li>F0-F31 (RISC-V)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <h3>Ejemplos de CPU reales</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Arquitectura</th>
+              <th>Registros Propósito General</th>
+              <th>Registros Especiales</th>
+              <th>Registros Punto Flotante</th>
+              <th>Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>x86 (Intel/AMD)</td>
+              <td>EAX, EBX, ECX, EDX, ESI, EDI, EBP, ESP</td>
+              <td>EIP, EFLAGS, CR0-CR4</td>
+              <td>XMM0-XMM15 (SSE), YMM0-YMM15 (AVX)</td>
+              <td>Core i7, Ryzen</td>
+            </tr>
+            <tr>
+              <td>ARM</td>
+              <td>R0-R12</td>
+              <td>R13 (SP), R14 (LR), R15 (PC), CPSR</td>
+              <td>S0-S31 (VFP), D0-D31 (NEON)</td>
+              <td>Cortex-A, Apple M1</td>
+            </tr>
+            <tr>
+              <td>RISC-V</td>
+              <td>X0-X31 (X0 siempre cero)</td>
+              <td>PC, CSR (Control/Status)</td>
+              <td>F0-F31 (FP), V0-V31 (Vector)</td>
+              <td>SiFive, Kendryte</td>
+            </tr>
+            <tr>
+              <td>PowerPC</td>
+              <td>GPR0-GPR31</td>
+              <td>LR, CTR, CR, XER</td>
+              <td>FPR0-FPR31</td>
+              <td>IBM POWER, Xbox 360</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Resto del contenido manteniendo la misma estructura mejorada -->
+    
+  </div>
+</body>
+</html>
